@@ -1,18 +1,10 @@
 
 
 const button = document.getElementById("hostButton");
-
-let peer;
 let conn;
 
-function makeID(peer){
-    // Create a random PeerJS ID
-    peer = new Peer();
-
-    peer.on('open', (id) => {
-        document.getElementById('peer-id').innerText = id;
-        console.log('My peer ID is: ' + id);
-    });
+function gotoRoomHost(){
+    window.location.href = 'room.html'; // Path relative to index.html
 }
 
 function joinPeer(conn){
@@ -20,16 +12,8 @@ function joinPeer(conn){
     conn = peer.connect(id);
 }
 
-button.addEventListener("click", makeID);
+button.addEventListener("click", gotoRoomHost);
 
-if(peer){
-    console.log("Listening");
-    peer.on('connection', (conn) => {
-        conn.on('data', (data) => {
-            console.log('Received:', data);
-        });
-    });
-}
 
 if(conn){
     conn.on("open", function () {
