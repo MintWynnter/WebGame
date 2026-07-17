@@ -4,12 +4,22 @@ const hostButton = document.getElementById("hostButton");
 const joinButton = document.getElementById("joinButton");
 
 function gotoRoomHost(){
-    window.location.href = 'room.html'; // Path relative to index.html
+    var uname = document.getElementById('uname-enter').value;
+    if(uname === ""){
+        return;
+    }
+    var url = "room.html?username=" + uname
+    window.location.href = url; // Path relative to index.html
 }
 
 function joinPeer(){
-    var id = document.getElementById('peer-id-enter').innerText;
-    window.location.href = ("room.html?id=".concat(id)); // Path relative to index.html
+    var uname = document.getElementById('uname-enter').value;
+    if(uname === ""){
+        return;
+    }
+    var id = document.getElementById('peer-id-enter').value;
+    var url = "room.html?id=" + id + "&uname=" + uname
+    window.location.href = url; // Path relative to index.html
 }
 
 hostButton.addEventListener("click", gotoRoomHost);

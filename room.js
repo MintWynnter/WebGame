@@ -4,6 +4,7 @@ var peer = new Peer();
 peer.on('error', (err) => {
     console.error('Signaling server error:', err);
 });
+var uname = params.get('uname');
 if(params.get('id')){
     document.getElementById('peer-id').innerText = params.get('id');
     peer.on('open', (id) => {
@@ -18,7 +19,7 @@ if(params.get('id')){
             });
 
             // Send messages
-            conn.send("Hello!");
+            conn.send({id: uname});
         });
     });
 }
