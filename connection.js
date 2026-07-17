@@ -13,5 +13,5 @@ function joinPeer(){
 }
 
 hostButton.addEventListener("click", gotoRoomHost);
-joinB.addEventListener("click", joinPeer);
+joinButton.addEventListener("click", joinPeer);
 
