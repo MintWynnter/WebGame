@@ -9,6 +9,7 @@ if(params.get('id')){
         var conn = peer.connect('destination-peer-id');
         conn.on("open", function () {
             // Receive messages
+            console.log("Connected")
             conn.on("data", function (data) {
                 console.log("Received", data);
     });
