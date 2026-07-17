@@ -25,6 +25,7 @@ else{
 
     console.log("Listening");
     peer.on('connection', (conn) => {
+        console.log("Connection");
         conn.on('data', (data) => {
             console.log('Received:', data);
         });
