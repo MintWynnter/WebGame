@@ -1,25 +1,30 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-
-<script src="./peer.js"></script>
-<script src="./index.js"></script>
+    <meta charset="UTF-8">
+    <title>PeerJS GitHub Pages Demo</title>
+    <!-- Include PeerJS via CDN -->
+    <script src="https://unpkg.com"></script>
 </head>
 <body>
-	<div id="register">
-		<h1>Your name:</h1>
-		<form onsubmit="register(); return false;" accept-charset="UTF-8">
-			<input type="text" name="name" value="" id="name" required>
-			<input type="submit" name="commit" value="Join!">
-		</form>
-	</div>
-	<div id="userAdd" style="display: none;">
-		<h1>Connect with user:</h1>
-		<form onsubmit="addUser(); return false;" accept-charset="UTF-8">
-			<input type="text" name="name" value="" id="add" required>
-			<input type="submit" name="commit" value="Add">
-		</form>
-	</div>
-	<div id="participants"></div>
+    <h1>My PeerJS App</h1>
+    <p>Your Peer ID: <span id="peer-id">Generating...</span></p>
+
+    <script>
+        // Create a random PeerJS ID
+        const peer = new Peer();
+
+        peer.on('open', (id) => {
+            document.getElementById('peer-id').innerText = id;
+            console.log('My peer ID is: ' + id);
+        });
+
+        // Listen for incoming data connections
+        peer.on('connection', (conn) => {
+            conn.on('data', (data) => {
+                console.log('Received:', data);
+            });
+        });
+    </script>
 </body>
 </html>
