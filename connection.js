@@ -9,7 +9,7 @@ function gotoRoomHost(){
 
 function joinPeer(){
     var id = document.getElementById('peer-id-enter').innerText;
-    window.location.href = ("room.html?id="+id); // Path relative to index.html
+    window.location.href = ("room.html?id=".concat(id)); // Path relative to index.html
 }
 
 hostButton.addEventListener("click", gotoRoomHost);

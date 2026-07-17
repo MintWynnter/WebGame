@@ -1,8 +1,11 @@
 
 const params = new URLSearchParams(window.location.search);
+var peer = new Peer();
+peer.on('error', (err) => {
+    console.error('Signaling server error:', err);
+});
 if(params.get('id')){
     document.getElementById('peer-id').innerText = params.get('id');
-    var peer = new Peer();
     peer.on('open', (id) => {
         console.log('My peer ID is: ' + id);
         // Safe to connect now
@@ -12,16 +15,14 @@ if(params.get('id')){
             console.log("Connected")
             conn.on("data", function (data) {
                 console.log("Received", data);
-    });
+            });
 
-    // Send messages
-    conn.send("Hello!");
-    });
+            // Send messages
+            conn.send("Hello!");
+        });
     });
 }
 else{
-    var peer = new Peer();
-
     peer.on('open', (id) => {
         document.getElementById('peer-id').innerText = id;
         console.log('Room ID: ' + id);
