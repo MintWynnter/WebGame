@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "netplayjs": "^0.4.1"
+    "netplayjs": "^0.4.1",
+    "peerjs": "^1.5.5"
   }
 }
