@@ -8,23 +8,9 @@
 </head>
 <body>
     <h1>My PeerJS App</h1>
-    <p>Your Peer ID: <span id="peer-id">Generating..</span></p>
+    <button id="hostButton">Host</button>
+    <p>Your Peer ID: <span id="peer-id">...</span></p>
 
-    <script>
-        // Create a random PeerJS ID
-        const peer = new Peer();
-
-        peer.on('open', (id) => {
-            document.getElementById('peer-id').innerText = id;
-            console.log('My peer ID is: ' + id);
-        });
-
-        // Listen for incoming data connections
-        peer.on('connection', (conn) => {
-            conn.on('data', (data) => {
-                console.log('Received:', data);
-            });
-        });
-    </script>
+    <script src="connection.js"></script>
 </body>
 </html>
