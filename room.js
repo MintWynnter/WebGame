@@ -2,6 +2,7 @@
 const params = new URLSearchParams(window.location.search);
 if(params.get('id')){
     document.getElementById('peer-id').innerText = params.get('id');
+    var peer = new Peer();
     var conn = peer.connect(params.get('id'));
 
     conn.on("open", function () {
