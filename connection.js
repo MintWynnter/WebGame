@@ -2,9 +2,12 @@
 
 const button = document.getElementById("hostButton");
 
-function makeID(){
+let peer;
+let conn;
+
+function makeID(peer){
     // Create a random PeerJS ID
-    const peer = new Peer();
+    peer = new Peer();
 
     peer.on('open', (id) => {
         document.getElementById('peer-id').innerText = id;
@@ -12,17 +15,29 @@ function makeID(){
     });
 }
 
+function joinPeer(conn){
+    var id = document.getElementById('peer-id-enter').innerText;
+    conn = peer.connect(id);
+}
+
 button.addEventListener("click", makeID);
 
-// Listen for incoming data connections
-/*peer.on('connection', (conn) => {
-    conn.on('data', (data) => {
-        console.log('Received:', data);
+if(peer){
+    peer.on('connection', (conn) => {
+        conn.on('data', (data) => {
+            console.log('Received:', data);
+        });
     });
-});*/
+}
 
+if(conn){
+    conn.on("open", function () {
+    // Receive messages
+    conn.on("data", function (data) {
+        console.log("Received", data);
+    });
 
-
-
-
-var conn = peer.connect("dest-peer-id");
+    // Send messages
+    conn.send("Hello!");
+    });
+}
