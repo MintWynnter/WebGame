@@ -3,16 +3,19 @@ const params = new URLSearchParams(window.location.search);
 if(params.get('id')){
     document.getElementById('peer-id').innerText = params.get('id');
     var peer = new Peer();
-    var conn = peer.connect(params.get('id'));
-
-    conn.on("open", function () {
-    // Receive messages
-    conn.on("data", function (data) {
-        console.log("Received", data);
+    peer.on('open', (id) => {
+        console.log('My peer ID is: ' + id);
+        // Safe to connect now
+        var conn = peer.connect('destination-peer-id');
+        conn.on("open", function () {
+            // Receive messages
+            conn.on("data", function (data) {
+                console.log("Received", data);
     });
 
     // Send messages
     conn.send("Hello!");
+    });
     });
 }
 else{
