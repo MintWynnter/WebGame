@@ -9,7 +9,7 @@ if(params.get('id')){
     peer.on('open', (id) => {
         console.log('My peer ID is: ' + id);
         // Safe to connect now
-        var conn = peer.connect('destination-peer-id');
+        var conn = peer.connect(params.get('id'));
         conn.on("open", function () {
             // Receive messages
             console.log("Connected")
