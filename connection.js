@@ -23,6 +23,7 @@ function joinPeer(conn){
 button.addEventListener("click", makeID);
 
 if(peer){
+    console.log("Listening");
     peer.on('connection', (conn) => {
         conn.on('data', (data) => {
             console.log('Received:', data);
